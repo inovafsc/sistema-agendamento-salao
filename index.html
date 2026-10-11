@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio AJ - Agendamento Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <div class="logo-section">
+          <div class="logo-box">
+            <svg class="logo-flower" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="8" fill="currentColor"/>
+              <path d="M 50 10 Q 60 20 60 35 Q 60 50 50 58 Q 40 50 40 35 Q 40 20 50 10" fill="currentColor" opacity="0.8"/>
+              <path d="M 90 50 Q 80 60 65 60 Q 50 60 42 50 Q 50 40 65 40 Q 80 40 90 50" fill="currentColor" opacity="0.8"/>
+              <path d="M 50 90 Q 40 80 40 65 Q 40 50 50 42 Q 60 50 60 65 Q 60 80 50 90" fill="currentColor" opacity="0.8"/>
+              <path d="M 10 50 Q 20 40 35 40 Q 50 40 58 50 Q 50 60 35 60 Q 20 60 10 50" fill="currentColor" opacity="0.8"/>
+            </svg>
+            <div class="logo-text">
+              <strong>STUDIO AJ</strong>
+              <small>Beleza e Bem Estar</small>
+            </div>
+          </div>
+        </div>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-active">Agendar</a>
+          <a href="admin.html">Administrativo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell container">
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <h1>Sua beleza é nossa prioridade</h1>
+          <p>Escolha os procedimentos, o melhor horário e agende seu atendimento com segurança.</p>
+        </div>
+        <div class="hero-badge">
+          <span>Horário de funcionamento</span>
+          <strong>Seg-Dom: 9h às 19h</strong>
+          <small>Almoço: 11:30 - 13:00</small>
+        </div>
+      </section>
+
+      <section class="services-section">
+        <div class="section-header">
+          <h2>Escolha seus procedimentos</h2>
+        </div>
+        <div id="serviceList" class="service-grid"></div>
+      </section>
+
+      <section class="booking-panel">
+        <div class="section-header">
+          <h2>Finalize seu agendamento</h2>
+        </div>
+
+        <form id="bookingForm" class="booking-form">
+          <div class="selected-services-container">
+            <h3>Serviços selecionados</h3>
+            <div id="selectedServicesList" class="selected-services-list">
+              <p class="empty-state">Nenhum serviço selecionado.</p>
+            </div>
+          </div>
+
+          <div class="booking-pricing">
+            <div class="pricing-item">
+              <span>Valor total</span>
+              <strong id="totalPrice">R$ 0,00</strong>
+            </div>
+            <div class="pricing-item">
+              <span>Sinal de 30%</span>
+              <strong id="depositPrice">R$ 0,00</strong>
+            </div>
+          </div>
+
+          <div class="grid two-col">
+            <div class="field-group">
+              <label for="bookingDate">Data do atendimento</label>
+              <input id="bookingDate" name="bookingDate" type="date" required />
+            </div>
+            <div class="field-group">
+              <label for="bookingTime">Hora do atendimento</label>
+              <input id="bookingTime" name="bookingTime" type="time" required />
+            </div>
+          </div>
+
+          <div class="grid two-col">
+            <div class="field-group">
+              <label for="clientName">Nome completo</label>
+              <input id="clientName" name="clientName" type="text" placeholder="Digite seu nome" required />
+            </div>
+            <div class="field-group">
+              <label for="clientPhone">Telefone</label>
+              <input id="clientPhone" name="clientPhone" type="tel" placeholder="(11) 99999-9999" required />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="clientBirthDate">Data de nascimento</label>
+            <input id="clientBirthDate" name="clientBirthDate" type="date" required />
+          </div>
+
+          <button type="submit" class="primary-btn full-width">Confirmar agendamento</button>
+        </form>
+      </section>
+    </main>
+
+    <div id="termsModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Leia antes de confirmar o pedido</h3>
+          <button type="button" class="icon-close" data-close-modal aria-label="Fechar modal">×</button>
+        </div>
+
+        <div class="modal-body terms-body">
+          <div class="terms-content">
+            <p><strong>Atendimentos aos domingos têm acréscimo de 10% sobre o valor total dos procedimentos.</strong></p>
+
+            <p><strong style="color: var(--primary-dark);">Para confirmar o horário é cobrado um sinal de 30% do valor dos procedimentos.</strong></p>
+
+            <p>O horário só fica confirmado depois que o salão aceitar o seu pedido, e o sinal é combinado com você nessa confirmação.</p>
+
+            <p>O salão entra em contato pelo telefone informado com os dados para o pagamento.</p>
+
+            <p>Se precisar remarcar ou cancelar, avise o salão com antecedência.</p>
+
+            <p><strong style="color: var(--danger);">O cancelamento feito com menos de 10 minutos de antecedência do horário marcado será cobrado.</strong></p>
+          </div>
+
+          <div id="termsSummary" class="terms-summary"></div>
+
+          <label class="checkbox-row">
+            <input id="acceptTerms" type="checkbox" />
+            <span>Li e concordo com os termos acima.</span>
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" data-close-modal>Cancelar</button>
+          <button id="confirmBookingBtn" type="button" class="primary-btn" disabled>Confirmar agendamento</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
